@@ -1,0 +1,46 @@
+<!-- 
+CST-126_Blog Ver 1.0
+register Ver 1.0
+Author: Richard Boyd
+04APR19
+HTML form for creating a new user
+ -->
+ 
+<html>
+	<head>
+		<title>Registration</title>
+	</head>
+	<body>
+		<h1>Register a new user</h1>
+		<hr/>
+		<form action="registrationHandler.php" method="POST">
+		<p>Username</p>
+		<input name="User_name" type="text" required/>
+		<p>Nickname</p>
+		<input name="User_nickname" type="text" />
+		<p>First Name</p>
+		<input name="First_name" type="text" required/>
+		<p>Middle Name</p>
+		<input name="Middle_name" type="text" />
+		<p>Last Name</p>
+		<input name="Last_name" type="text" required/>
+		<p>Email</p>
+		<input name="Email1" type="email" required/>
+		<p>Alternative Email</p>
+		<input name="Email2" type="email" />
+		<p>Address Line 1</p>
+		<input name="Address1" type="text" />
+		<p>Address Line 2</p>
+		<input name="Address2" type="text" />
+		<p>City</p>
+		<input name="City" type="text" />
+		<p>State</p>
+		<input name="State" type="text" />
+		<p>Zipcode</p>
+		<input name="Zipcode" type="number" maxlength="5"/>
+		<p>Country</p>
+		<input name="Country" type="text" /><br/><br/>
+		<input type="submit" value="Submit" class="submit" />
+		</form>
+	</body>
+</html>
