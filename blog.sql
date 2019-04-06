@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 05, 2019 at 01:34 AM
+-- Generation Time: Apr 06, 2019 at 10:04 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -97,6 +97,7 @@ CREATE TABLE `roles` (
 CREATE TABLE `users` (
   `User_id` int(11) NOT NULL,
   `User_name` varchar(100) NOT NULL,
+  `Password` varchar(50) NOT NULL,
   `User_role` int(11) DEFAULT NULL,
   `User_nickname` varchar(100) NOT NULL,
   `First_name` varchar(100) NOT NULL,
@@ -113,6 +114,13 @@ CREATE TABLE `users` (
   `User_banned` enum('y','n') NOT NULL DEFAULT 'n',
   `User_deleted` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`User_id`, `User_name`, `Password`, `User_role`, `User_nickname`, `First_name`, `Middle_name`, `Last_name`, `Email1`, `Email2`, `Address1`, `Address2`, `City`, `State`, `Zipcode`, `Country`, `User_banned`, `User_deleted`) VALUES
+(7, 'test', 'Testtest1', NULL, 'FakeUser', 'Fake', '', 'User', 'example@email.com', '', '1001 S Fake St', 'Apt 5', 'Notreal', 'Testing', '55555', 'United States', 'n', 'n');
 
 --
 -- Indexes for dumped tables
@@ -190,7 +198,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

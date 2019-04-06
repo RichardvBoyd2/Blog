@@ -1,11 +1,14 @@
 <!-- 
-CST-126_Blog Ver 1.0
-registrationHandler Ver 1.0
+CST-126_Blog Ver 2.0
+registrationHandler Ver 2.0
 Author: Richard Boyd
-04APR19
-PHP code that handles POST input from register.html and 
-adds data to the users table in blog database
- -->
+06APR19
+PHP code that handles POST input from register.html and adds data to the users table in blog database
+-->
+<!-- 
+registrationHandler Ver 2.0 notes:
+added code to handle new password column that was added to database
+-->
 
 <?php
 $host = "localhost";
@@ -19,9 +22,9 @@ if ($conn->connect_error){
 }
 
 //checks for nickname, if blank just combines first and last name
-$nickname;
-if ($_POST[User_nickname] === NULL){
-    $nickname = $_POST[First_name] + $_POST[Last_name];
+global $nickname;
+if ($_POST[User_nickname] === "" || $_POST[User_nickname] === NULL){
+    $nickname = $_POST[First_name].$_POST[Last_name];
 } else {
     $nickname = $_POST[User_nickname];
 }
@@ -29,6 +32,7 @@ if ($_POST[User_nickname] === NULL){
 //SQL command, formatted for readability
 $sql = "INSERT INTO users (
         User_name,
+        Password,
         User_nickname,
         First_name,
         Middle_name,
@@ -44,6 +48,7 @@ $sql = "INSERT INTO users (
         ) 
         VALUES (
         '$_POST[User_name]',
+        '$_POST[Password]',
         '$nickname',
         '$_POST[First_name]',
         '$_POST[Middle_name]',

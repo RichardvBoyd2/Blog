@@ -1,14 +1,18 @@
 <!-- 
-CST-126_Blog Ver 1.0
-register Ver 1.0
+CST-126_Blog Ver 2.0
+register Ver 2.0
 Author: Richard Boyd
-04APR19
+06APR19
 HTML form for creating a new user
- -->
+-->
+<!-- 
+register Ver 2.0 notes:
+added input field for password, with requirements
+-->
  
 <html>
 	<head>
-		<title>Registration</title>
+		<title>Registrer New User</title>
 	</head>
 	<body>
 		<h1>Register a new user</h1>
@@ -16,6 +20,10 @@ HTML form for creating a new user
 		<form action="registrationHandler.php" method="POST">
 		<p>Username</p>
 		<input name="User_name" type="text" required/>
+		<p>Password</p>
+		<input name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+			title="Must contain at least one number, one uppercase and lowercase letter, 
+			and be at least 8 characters long" required/>
 		<p>Nickname</p>
 		<input name="User_nickname" type="text" />
 		<p>First Name</p>
