@@ -1,54 +1,70 @@
 <!-- 
-CST-126_Blog Ver 2.0
-register Ver 2.0
+CST-126_Blog Ver 2.2
+register Ver 2.1
 Author: Richard Boyd
-06APR19
+08APR19
 HTML form for creating a new user
 -->
 <!-- 
 register Ver 2.0 notes:
 added input field for password, with requirements
 -->
+<!-- 
+register Ver 2.1 notes:
+updated some formatting and linked to new .css stylesheet
+ -->
  
 <html>
 	<head>
 		<title>Registrer New User</title>
+		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">
 	</head>
 	<body>
-		<h1>Register a new user</h1>
-		<hr/>
-		<form action="registrationHandler.php" method="POST">
-		<p>Username</p>
-		<input name="User_name" type="text" required/>
-		<p>Password</p>
-		<input name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-			title="Must contain at least one number, one uppercase and lowercase letter, 
-			and be at least 8 characters long" required/>
-		<p>Nickname</p>
-		<input name="User_nickname" type="text" />
-		<p>First Name</p>
-		<input name="First_name" type="text" required/>
-		<p>Middle Name</p>
-		<input name="Middle_name" type="text" />
-		<p>Last Name</p>
-		<input name="Last_name" type="text" required/>
-		<p>Email</p>
-		<input name="Email1" type="email" required/>
-		<p>Alternative Email</p>
-		<input name="Email2" type="email" />
-		<p>Address Line 1</p>
-		<input name="Address1" type="text" />
-		<p>Address Line 2</p>
-		<input name="Address2" type="text" />
-		<p>City</p>
-		<input name="City" type="text" />
-		<p>State</p>
-		<input name="State" type="text" />
-		<p>Zipcode</p>
-		<input name="Zipcode" type="number" maxlength="5"/>
-		<p>Country</p>
-		<input name="Country" type="text" /><br/><br/>
-		<input type="submit" value="Submit" class="submit" />
-		</form>
+		<!-- change login to display account once other pages are added -->
+		<div class="navbar">
+			<a href="">Home</a>
+			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
+			<div align="right">
+			<a href="/CST-126_Blog/Login/login.html">Log In</a>
+			</div>			
+		</div>
+		<div>
+			<h1>Register a new user</h1>			
+			<form action="registrationHandler.php" method="POST">
+			<label>Username</label>
+			<input name="User_name" type="text" required/>
+			<label>Password</label>
+			<input name="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+				title="Must contain at least one number, one uppercase and lowercase letter, 
+				and be at least 8 characters long" required/>
+			<label>Nickname</label>
+			<input name="User_nickname" type="text" />
+			<label>First Name</label>
+			<input name="First_name" type="text" required/>
+			<label>Middle Name</label>
+			<input name="Middle_name" type="text" />
+			<label>Last Name</label>
+			<input name="Last_name" type="text" required/>
+			<label>Email</label>
+			<input name="Email1" type="email" required/>
+			<label>Alternative Email</label>
+			<input name="Email2" type="email" />
+			<label>Address Line 1</label>
+			<input name="Address1" type="text" />
+			<label>Address Line 2</label>
+			<input name="Address2" type="text" />
+			<label>City</label>
+			<input name="City" type="text" />
+			<label>State</label>
+			<input name="State" type="text" />
+			<label>Zipcode</label>
+			<input name="Zipcode" type="number" maxlength="5"/>
+			<label>Country</label>
+			<input name="Country" type="text" /><br/><br/>
+			<input type="submit" value="Submit" class="submit" />
+			</form>			
+		</div>
+		<hr/>		
+		
 	</body>
 </html>

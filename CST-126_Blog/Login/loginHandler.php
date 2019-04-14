@@ -1,12 +1,18 @@
 <!-- 
-CST-126_Blog Ver 2.0
-registrationHandler Ver 1.0
+CST-126_Blog Ver 2.2
+registrationHandler Ver 1.1
 Author: Richard Boyd
-06APR19
-handles POST from login.html and queries users table against the attempted login credentials
+08APR19
+Handles POST from login.html and queries users table against the attempted login credentials
  -->
- 
+<!--
+registrationHandler Ver 1.1 notes:
+added code to implement sessions and add user ID to session user ID upon successful login
+ -->
+
 <?php
+session_start();
+
 $host = "localhost";
 $user = "root";
 $pass = "root";
@@ -33,7 +39,9 @@ else {
     $result = $conn->query($sql);
     
     if ($result->num_rows == 1) {
-        echo "Login was successful";        
+        echo "Login was successful";
+        $user = $result->fetch_object();
+        $_SESSION['user_id'] = $user->User_id;
     } else {
         echo "Incorrect Password";
     }

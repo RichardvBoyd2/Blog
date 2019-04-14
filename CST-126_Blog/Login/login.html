@@ -1,22 +1,38 @@
 <!-- 
-CST-126_Blog Ver 2.0
-login Ver 1.0
+CST-126_Blog Ver 2.2
+login Ver 1.1
 Author: Richard Boyd
-06APR19
+08APR19
 HTML form for logging into an existing account
 -->
+<!-- 
+login Ver 1.1 notes:
+updated formatting and linked to new .css stylesheet
+ -->
  
 <html>
 	<head>
 		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">		
 	</head>
 	<body>
-		<form action="loginHandler.php" method="POST">
-		<label>Username: </label>
-		<input name="username" type="text" required/><br/>
-		<label>Password: </label>
-		<input name="password" type="password" required/><br/>
-		<input type="submit" value="Login" class="submit" />
-		</form>
+		<!-- change login to display account once other pages are added -->
+		<div class="navbar">
+			<a href="">Home</a>
+			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
+			<a href="/CST-126_Blog/Login/login.html" >Log In</a>			
+		</div>
+		<div>
+			<h1>Log in</h1>
+			<form action="loginHandler.php" method="POST">
+			<label>Username </label>
+			<input name="username" type="text" required/><br/>
+			<label>Password </label>
+			<input name="password" type="password" required/><br/>
+			<input type="submit" value="Login" class="submit"/>
+			</form>
+		</div>
+		<hr/>
+		
 	</body>
 </html>
