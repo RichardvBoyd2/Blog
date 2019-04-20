@@ -1,25 +1,39 @@
 <!-- 
-CST-126_Blog Ver 2.2
-registrationHandler Ver 2.0
+CST-126_Blog Ver 3.1
+registrationHandler Ver 2.2
 Author: Richard Boyd
-08APR19
+18APR19
 PHP code that handles POST input from register.html and adds data to the users table in blog database
 -->
 <!-- 
 registrationHandler Ver 2.0 notes:
 added code to handle new password column that was added to database
 -->
+<!-- 
+registrationHandler Ver 2.1 notes:
+changed database connection to use function from functions.php instead of opening connection locally
+ -->
+<!-- 
+registrationHandler Ver 2.2 notes:
+added html code around php code for style consistancy
+ -->
+
+<html>
+	<head>
+		<title>Attempting Registration...</title>
+		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">		
+	</head>
+	<body>
+		<!-- change login to display account once other pages are added -->
+		<div class="navbar">
+			<a href="">Home</a>
+			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
+			<a href="/CST-126_Blog/Login/login.html" >Log In</a>			
+		</div>
 
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "root";
-$server = "blog";
-//tests connection to database server
-$conn = new mysqli($host,$user,$pass,$server,3306);
-if ($conn->connect_error){
-    die("Connection failed: ".$conn->connect_error);
-}
+include("../functions.php");
+$conn = dbConnect();
 
 //checks for nickname, if blank just combines first and last name
 global $nickname;
@@ -63,10 +77,15 @@ $sql = "INSERT INTO users (
         '$_POST[Country]')";
 
 //queries the SQL command, catches errors
-if ($conn->query($sql) === TRUE){
+if (mysqli_query($conn, $sql) === TRUE){
     echo $nickname."'s account was created successfully!";
 } else {
     echo "Error: ".$sql."<br>".$conn->error;
 }
 
+mysqli_close($conn);
+
 ?>
+
+	</body>
+</html>

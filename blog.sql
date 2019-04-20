@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 06, 2019 at 10:04 PM
+-- Generation Time: Apr 20, 2019 at 01:35 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -62,12 +62,12 @@ CREATE TABLE `comments` (
 CREATE TABLE `posts` (
   `Post_id` int(11) NOT NULL,
   `Post_title` varchar(100) NOT NULL,
-  `Category_id` int(11) NOT NULL,
-  `Post_content` varchar(1000) NOT NULL,
-  `Posted_date` date NOT NULL,
+  `Category_id` int(11) DEFAULT NULL,
+  `Post_content` longtext NOT NULL,
+  `Posted_date` datetime NOT NULL,
   `Posted_by` int(11) NOT NULL,
-  `Updated_date` date NOT NULL,
-  `Updated_by` int(11) NOT NULL,
+  `Updated_date` date DEFAULT NULL,
+  `Updated_by` int(11) DEFAULT NULL,
   `Deleted_Flag` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
