@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 3.1
+CST-126_Blog Ver 4.0
 registrationHandler Ver 2.2
 Author: Richard Boyd
-18APR19
+27APR19
 PHP code that handles POST input from register.html and adds data to the users table in blog database
 -->
 <!-- 
@@ -26,9 +26,10 @@ added html code around php code for style consistancy
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="">Home</a>
+			<a href="/CST-126_Blog/Home/home.php">Home</a>
 			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
-			<a href="/CST-126_Blog/Login/login.html" >Log In</a>			
+			<a href="/CST-126_Blog/Login/login.html" >Log In</a>
+					
 		</div>
 
 <?php

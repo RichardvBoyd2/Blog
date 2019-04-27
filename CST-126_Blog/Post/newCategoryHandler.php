@@ -1,14 +1,10 @@
 <!-- 
 CST-126_Blog Ver 4.0
-newPostHandler Ver 1.1
+newCategoryHandler Ver 1.0
 Author: Richard Boyd
 27APR19
-PHP file that handles creating a new blog post
+php code for creating a new category with POST info from newCategory.html
 -->
-<!-- 
-newPostHandler Ver 1.1 notes:
-added date and user ID values to SQL query
- -->
 
 <html>
 	<head>
@@ -25,19 +21,16 @@ session_start();
 
 include("../functions.php");
 $conn = dbConnect();
-
-$ID = $_SESSION["USER_ID"];
-$title = mysqli_real_escape_string($conn, $_POST['Post_title']);
-$content = mysqli_real_escape_string($conn, $_POST['Post_content']);
-$sql = "INSERT INTO posts (Post_title, Post_content, Posted_date, Posted_by) 
-        VALUES ('$title', '$content', CURRENT_TIMESTAMP, '$ID')";
+$name = $_POST['Category_name'];
+$ID = $_SESSION['USER_ID'];
+$sql = "INSERT INTO categories (Category_name, Created_date, Created_by)
+        VALUES ('$name', CURRENT_DATE, '$ID')";
 
 if (mysqli_query($conn, $sql) === TRUE) {
-    echo $_POST[Post_title]." was created successfully!";
+    echo $_POST['Category_name']." was created successfully!";
     include('../Login/loginRedirect.php');
 } else {
     echo "There was a problem creating your post ";
-    echo $fixed." ".$title;
     echo "Error: ".$sql."<br>".$conn->error;
 }
 

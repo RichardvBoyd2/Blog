@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 3.1
+CST-126_Blog Ver 4.0
 loginHandler Ver 1.3
 Author: Richard Boyd
-18APR19
+27APR19
 Handles POST from login.html and queries users table against the attempted login credentials
  -->
 <!--
@@ -26,7 +26,7 @@ added html code around php code for style consistancy
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="">Home</a>
+			<a href="/CST-126_Blog/Home/home.php">Home</a>
 			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
 			<a href="/CST-126_Blog/Login/login.html" >Log In</a>			
 		</div>
@@ -55,7 +55,11 @@ else {
     if ($result->num_rows == 1) {
         echo "Login was successful!";
         $user = $result->fetch_object();
-        saveUserId($user->User_id);
+        $_SESSION['USER_ID'] = ($user->User_id);
+        $_SESSION['loggedin'] = true;
+        if (($user->User_role) == 1){
+            $_SESSION['admin'] = true;
+        }
         include("loginRedirect.php");
     } else {
         echo "Incorrect Password";

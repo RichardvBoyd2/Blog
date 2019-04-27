@@ -1,10 +1,14 @@
 <!-- 
-CST-126_Blog Ver 3.1
-newPost Ver 1.0
+CST-126_Blog Ver 4.0
+newPost Ver 1.1
 Author: Richard Boyd
-18APR19
+27APR19
 HTML form for creating a new blog post
 -->
+<!-- 
+newPost Ver 1.1 notes:
+changed Post_content to allow longer posts
+ -->
 
 <html>
 	<head>
@@ -14,21 +18,15 @@ HTML form for creating a new blog post
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="">Home</a>
-			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
-			<div align="right">
-			<a href="/CST-126_Blog/Login/login.html">Log In</a>
-			</div>			
+			<a href="/CST-126_Blog/Home/home.php">Home</a>					
 		</div>
 		<div>
 			<h1>Create a new post</h1>
 			<form action="newPostHandler.php" method="POST" id="newpost">
 			<label>Title</label>
-			<input name="Post_title" type="text" required/>
-			<!--<label>Category (not yet implemented)</label>
-			need input for category here -->
+			<input name="Post_title" type="text" required/>			
 			<label>Body</label>
-			<textarea name="Post_content" rows="5" cols="75"></textarea>
+			<textarea name="Post_content" rows="5" cols="75" maxlength="1000000000000"></textarea>
 			<input type="submit" value="Post" class="submit" />
 			</form>
 		</div>

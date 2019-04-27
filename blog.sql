@@ -2,9 +2,9 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 20, 2019 at 01:35 AM
--- Server version: 5.7.24-log
+-- Host: localhost:8889
+-- Generation Time: Apr 27, 2019 at 03:51 PM
+-- Server version: 5.7.24
 -- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -36,6 +36,14 @@ CREATE TABLE `categories` (
   `Active_flag` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`Category_id`, `Category_name`, `Created_date`, `Created_by`, `Active_flag`) VALUES
+(1, 'Funny', '2019-04-27', 8, 'n'),
+(2, 'Verse/Quote', '2019-04-27', 8, 'n');
+
 -- --------------------------------------------------------
 
 --
@@ -65,11 +73,18 @@ CREATE TABLE `posts` (
   `Category_id` int(11) DEFAULT NULL,
   `Post_content` longtext NOT NULL,
   `Posted_date` datetime NOT NULL,
-  `Posted_by` int(11) NOT NULL,
+  `Posted_by` int(11) DEFAULT NULL,
   `Updated_date` date DEFAULT NULL,
   `Updated_by` int(11) DEFAULT NULL,
   `Deleted_Flag` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`Post_id`, `Post_title`, `Category_id`, `Post_content`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Deleted_Flag`) VALUES
+(29, 'Woah maybe long posts do work', 1, 'Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.', '2019-04-26 23:18:13', 7, '2019-04-27', 8, 'n');
 
 -- --------------------------------------------------------
 
@@ -83,10 +98,17 @@ CREATE TABLE `roles` (
   `Role_description` varchar(1000) NOT NULL,
   `Created_date` date NOT NULL,
   `Created_by` int(11) NOT NULL,
-  `Updated_date` date NOT NULL,
-  `Updated_by` int(11) NOT NULL,
+  `Updated_date` date DEFAULT NULL,
+  `Updated_by` int(11) DEFAULT NULL,
   `Active_flag` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`Role_id`, `Role_name`, `Role_description`, `Created_date`, `Created_by`, `Updated_date`, `Updated_by`, `Active_flag`) VALUES
+(1, 'Administrator', 'Administrator of the website, allowed to tag and remove posts', '2019-04-27', 8, NULL, NULL, 'n');
 
 -- --------------------------------------------------------
 
@@ -120,7 +142,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`User_id`, `User_name`, `Password`, `User_role`, `User_nickname`, `First_name`, `Middle_name`, `Last_name`, `Email1`, `Email2`, `Address1`, `Address2`, `City`, `State`, `Zipcode`, `Country`, `User_banned`, `User_deleted`) VALUES
-(7, 'test', 'Testtest1', NULL, 'FakeUser', 'Fake', '', 'User', 'example@email.com', '', '1001 S Fake St', 'Apt 5', 'Notreal', 'Testing', '55555', 'United States', 'n', 'n');
+(7, 'test', 'Testtest1', NULL, 'FakeUser', 'Fake', '', 'User', 'example@email.com', '', '1001 S Fake St', 'Apt 5', 'Notreal', 'Testing', '55555', 'United States', 'n', 'n'),
+(8, 'admin', 'Password1', 1, 'Admin', 'Ad', '', 'min', 'admin@blog.com', '', '', '', '', '', '', '', 'n', 'n');
 
 --
 -- Indexes for dumped tables
@@ -180,7 +203,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -192,13 +215,19 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `Post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `Role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -237,7 +266,7 @@ ALTER TABLE `roles`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `User_role` FOREIGN KEY (`User_role`) REFERENCES `roles` (`Role_id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`User_role`) REFERENCES `roles` (`Role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
