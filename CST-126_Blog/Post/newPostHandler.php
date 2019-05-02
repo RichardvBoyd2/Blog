@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 4.0
+CST-126_Blog Ver 5.0
 newPostHandler Ver 1.1
 Author: Richard Boyd
-27APR19
+01MAY19
 PHP file that handles creating a new blog post
 -->
 <!-- 

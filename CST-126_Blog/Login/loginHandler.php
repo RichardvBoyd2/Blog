@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 4.0
-loginHandler Ver 1.3
+CST-126_Blog Ver 5.0
+loginHandler Ver 1.4
 Author: Richard Boyd
-27APR19
+01MAY19
 Handles POST from login.html and queries users table against the attempted login credentials
  -->
 <!--
@@ -16,6 +16,10 @@ changed database connection to use function from functions.php instead of openin
 <!-- 
 loginHandler Ver 1.3 notes:
 added html code around php code for style consistancy
+ -->
+<!-- 
+loginHandler Ver 1.4 notes:
+changed the saving of session variables so that the user role is saved to be read later
  -->
 
 <html>
@@ -56,10 +60,8 @@ else {
         echo "Login was successful!";
         $user = $result->fetch_object();
         $_SESSION['USER_ID'] = ($user->User_id);
-        $_SESSION['loggedin'] = true;
-        if (($user->User_role) == 1){
-            $_SESSION['admin'] = true;
-        }
+        $_SESSION['role'] = ($user->User_role);
+        $_SESSION['loggedin'] = true;        
         include("loginRedirect.php");
     } else {
         echo "Incorrect Password";

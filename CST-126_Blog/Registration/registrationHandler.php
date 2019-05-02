@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 4.0
-registrationHandler Ver 2.2
+CST-126_Blog Ver 5.0
+registrationHandler Ver 2.3
 Author: Richard Boyd
-27APR19
+01MAY19
 PHP code that handles POST input from register.html and adds data to the users table in blog database
 -->
 <!-- 
@@ -16,6 +16,10 @@ changed database connection to use function from functions.php instead of openin
 <!-- 
 registrationHandler Ver 2.2 notes:
 added html code around php code for style consistancy
+ -->
+<!-- 
+registrationHandler Ver 2.3 notes:
+added lines to redirect after creating a new user
  -->
 
 <html>
@@ -80,7 +84,9 @@ $sql = "INSERT INTO users (
 //queries the SQL command, catches errors
 if (mysqli_query($conn, $sql) === TRUE){
     echo $nickname."'s account was created successfully!";
+    include '../Login/loginRedirect.php';
 } else {
+    echo "There was a problem creating your account.";
     echo "Error: ".$sql."<br>".$conn->error;
 }
 

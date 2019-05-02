@@ -1,5 +1,5 @@
 <!--  
-CST-126_Blog Ver 4.0
+CST-126_Blog Ver 5.0
 deletePost Ver 1.0
 Author: Richard Boyd
 27APR19

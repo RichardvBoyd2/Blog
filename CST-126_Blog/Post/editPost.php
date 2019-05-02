@@ -1,14 +1,18 @@
 <!--  
-CST-126_Blog Ver 4.0
-editPost Ver 1.0
+CST-126_Blog Ver 5.0
+editPost Ver 2.0
 Author: Richard Boyd
-27APR19
+01MAY19
 HTML form (in php) for editing a selected post
 -->
+<!-- 
+editPost Ver 2.0 notes:
+Added fields to the form to edit the title and content of post as well as the category.
+ -->
 
 <html>
 	<head>
-		<title>Create New Post</title>
+		<title>Edit Post</title>
 		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">
 	</head>
 	<body>
@@ -45,6 +49,11 @@ $row = mysqli_fetch_assoc($result);
 	</div>
 	
 	<form action="editPostHandler.php" method="post">
+		<label>Title</label>
+		<input name="Post_title" type="text" value="<?php echo $row["Post_title"]?>" required />			
+		<label>Body</label>		
+		<textarea name="Post_content" rows="5" cols="75" maxlength="1000000000000"><?php echo $row["Post_content"]?></textarea>
+		<label>Category</label>
 		<select name="Category_name">
 			<?php 
 			$result = getAllCategories();

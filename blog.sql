@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 27, 2019 at 03:51 PM
+-- Generation Time: May 02, 2019 at 01:46 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.10
 
@@ -42,7 +42,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`Category_id`, `Category_name`, `Created_date`, `Created_by`, `Active_flag`) VALUES
 (1, 'Funny', '2019-04-27', 8, 'n'),
-(2, 'Verse/Quote', '2019-04-27', 8, 'n');
+(2, 'Verse/Quote', '2019-04-27', 8, 'n'),
+(3, 'Testing', '2019-05-01', 8, 'n');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`Post_id`, `Post_title`, `Category_id`, `Post_content`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Deleted_Flag`) VALUES
-(29, 'Woah maybe long posts do work', 1, 'Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway. Idk if this will work but I\'m gonna \"try\" anyway.', '2019-04-26 23:18:13', 7, '2019-04-27', 8, 'n');
+(29, 'Editing titles works', 3, 'And editing the content works too!', '2019-04-26 23:18:13', 7, '2019-05-01', 8, 'n');
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`Role_id`, `Role_name`, `Role_description`, `Created_date`, `Created_by`, `Updated_date`, `Updated_by`, `Active_flag`) VALUES
-(1, 'Administrator', 'Administrator of the website, allowed to tag and remove posts', '2019-04-27', 8, NULL, NULL, 'n');
+(1, 'Administrator', 'Administrator of the website, allowed to tag and remove posts', '2019-04-27', 8, NULL, NULL, 'y'),
+(2, 'Author', 'Writes Posts', '2019-04-30', 8, NULL, NULL, 'y'),
+(3, 'Editor', 'Edits Post titles and content, add tags', '2019-04-30', 8, NULL, NULL, 'y'),
+(4, 'Moderator', 'Delete Posts and Comments', '2019-04-30', 8, NULL, NULL, 'y'),
+(5, 'Subscriber', 'Can view Posts, write comments', '2019-04-30', 8, NULL, NULL, 'y');
 
 -- --------------------------------------------------------
 
@@ -120,7 +125,7 @@ CREATE TABLE `users` (
   `User_id` int(11) NOT NULL,
   `User_name` varchar(100) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `User_role` int(11) DEFAULT NULL,
+  `User_role` int(11) NOT NULL DEFAULT '5',
   `User_nickname` varchar(100) NOT NULL,
   `First_name` varchar(100) NOT NULL,
   `Middle_name` varchar(100) DEFAULT NULL,
@@ -142,8 +147,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`User_id`, `User_name`, `Password`, `User_role`, `User_nickname`, `First_name`, `Middle_name`, `Last_name`, `Email1`, `Email2`, `Address1`, `Address2`, `City`, `State`, `Zipcode`, `Country`, `User_banned`, `User_deleted`) VALUES
-(7, 'test', 'Testtest1', NULL, 'FakeUser', 'Fake', '', 'User', 'example@email.com', '', '1001 S Fake St', 'Apt 5', 'Notreal', 'Testing', '55555', 'United States', 'n', 'n'),
-(8, 'admin', 'Password1', 1, 'Admin', 'Ad', '', 'min', 'admin@blog.com', '', '', '', '', '', '', '', 'n', 'n');
+(7, 'test', 'Testtest1', 5, 'FakeUser', 'Fake', '', 'User', 'example@email.com', '', '1001 S Fake St', 'Apt 5', 'Notreal', 'Testing', '55555', 'United States', 'n', 'n'),
+(8, 'admin', 'Password1', 1, 'Admin', 'Ad', '', 'min', 'admin@blog.com', '', '', '', '', '', '', '', 'n', 'n'),
+(9, 'testAuthor', 'Password1', 2, 'Author', 'Au', '', 'thor', 'author@blog.com', '', '', '', '', '', '', '', 'n', 'n'),
+(10, 'testEditor', 'Password1', 3, 'editor', 'ed', '', 'itor', 'editor@blog.com', 'editor@email.com', '', '', '', '', '', '', 'n', 'n'),
+(11, 'testModerator', 'Password1', 4, 'Moderator', 'Mod', '', 'erator', 'moderator@blog.com', '', '', '', '', '', '', '', 'n', 'n');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +211,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -221,13 +229,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `Role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
