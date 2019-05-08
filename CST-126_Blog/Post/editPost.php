@@ -1,8 +1,8 @@
 <!--  
-CST-126_Blog Ver 5.0
+CST-126_Blog Ver 7.0
 editPost Ver 2.0
 Author: Richard Boyd
-01MAY19
+07MAY19
 HTML form (in php) for editing a selected post
 -->
 <!-- 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 02, 2019 at 01:46 AM
+-- Generation Time: May 08, 2019 at 03:24 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.10
 
@@ -85,7 +85,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`Post_id`, `Post_title`, `Category_id`, `Post_content`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Deleted_Flag`) VALUES
-(29, 'Editing titles works', 3, 'And editing the content works too!', '2019-04-26 23:18:13', 7, '2019-05-01', 8, 'n');
+(29, 'Editing titles works', 3, 'And editing the content works too!', '2019-04-26 23:18:13', 7, '2019-05-01', 8, 'n'),
+(30, 'Searching posts!', NULL, 'Searching for blog posts should be working now, I\'m adding this post so I can search for it after it\'s posted. If this works I\'ll be done with Milestone 7 already! This class is going great!', '2019-05-07 19:57:58', 9, NULL, NULL, 'n');
 
 -- --------------------------------------------------------
 
@@ -223,7 +224,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `Post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `Post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `roles`

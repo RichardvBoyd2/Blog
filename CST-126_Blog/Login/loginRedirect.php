@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 5.0
+CST-126_Blog Ver 7.0
 loginRedirect Ver 1.1
 Author: Richard Boyd
-01MAY19
+07MAY19
 redirects successful login page to the new post page, will be changed to a "home page" in the future.
  -->
 <!-- 

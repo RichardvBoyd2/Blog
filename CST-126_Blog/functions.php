@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 5.0
-functions Ver 3.0
+CST-126_Blog Ver 7.0
+functions Ver 4.0
 Author: Richard Boyd
-01MAY19
+07MAY19
 PHP file that contains various functions used throughout the program
 -->
 <!-- 
@@ -12,6 +12,10 @@ added functions getAllPosts and getAllCategories
 <!-- 
 functions Ver 3.0 notes:
 added function getAllUsers and getRoleNames
+-->
+<!-- 
+functions Ver 4.0 notes:
+added searchPosts function
 -->
 
 <?php
@@ -44,6 +48,30 @@ function getAllPosts() {
             INNER JOIN users
             ON posts.Posted_by=users.User_id
             ORDER BY Posted_date DESC LIMIT 5";
+    $result = mysqli_query($conn, $sql);
+    
+    $posts = array();
+    $index = 0;
+    
+    while ($row = mysqli_fetch_assoc($result)){
+        $posts[$index] = array($row["Post_title"],$row["Post_content"],$row["Posted_date"],$row["User_nickname"]);
+        ++$index;
+    }
+    mysqli_close($conn);
+    return $posts;
+}
+
+function searchPosts($search) {
+    $conn = dbConnect();
+    
+    $sql = "SELECT posts.Post_title, posts.Post_content, posts.Posted_date, users.User_nickname
+            FROM posts            
+            INNER JOIN users
+            ON posts.Posted_by=users.User_id
+            WHERE 
+                posts.Post_title LIKE '%".$search."%' OR
+                posts.Post_content LIKE '%".$search."%'
+            ORDER BY Posted_date DESC";
     $result = mysqli_query($conn, $sql);
     
     $posts = array();

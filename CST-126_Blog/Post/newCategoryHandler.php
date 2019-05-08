@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 5.0
+CST-126_Blog Ver 7.0
 newCategoryHandler Ver 1.0
 Author: Richard Boyd
-01MAY19
+07MAY19
 php code for creating a new category with POST info from newCategory.html
 -->
 

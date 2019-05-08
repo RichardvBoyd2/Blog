@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 5.0
+CST-126_Blog Ver 7.0
 registrationHandler Ver 2.3
 Author: Richard Boyd
-01MAY19
+07MAY19
 PHP code that handles POST input from register.html and adds data to the users table in blog database
 -->
 <!-- 

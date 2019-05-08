@@ -1,8 +1,8 @@
 <!--  
-CST-126_Blog Ver 5.0
+CST-126_Blog Ver 7.0
 deletePost Ver 1.0
 Author: Richard Boyd
-27APR19
+07MAY19
 php code for deleting a selected post
 -->
 

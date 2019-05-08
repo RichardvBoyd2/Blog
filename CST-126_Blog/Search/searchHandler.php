@@ -1,26 +1,14 @@
-<!--  
+<!-- 
 CST-126_Blog Ver 7.0
-home Ver 1.3
+searchHandler Ver 1.0
 Author: Richard Boyd
 07MAY19
-Home page that displays the 5 latest blog posts as well as a conditional navigation bar depending on the session
--->
-<!-- 
-home Ver 1.1 notes:
-Adds edit button to posts if user is logged in and has permission to do so
+php code that handles search term and displays the results
  -->
-<!-- 
-home Ver 1.2 notes: 
-updates permission handling for all new roles
--->
-<!-- 
-home Ver 1.3 notes: 
-added search button to navbar
- -->
- 
+
 <html>
 	<head>
-		<title>CST-126 Blog</title>
+		<title>Search Results</title>
 		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">		
 	</head>
 	<body>
@@ -47,11 +35,17 @@ added search button to navbar
 			   <a href="/CST-126_Blog/Login/Logout.php" >Log Out</a>
 			<?php }	?>
 		</div>
+		
+<?php
+$posts = searchPosts($_POST["search"]);
+echo "<h1>Search Results</h1>";
+echo "<hr>";
 
-<?php 
-$posts = getAllPosts();
-
-for($x=0; $x<count($posts); $x++){?>
+if (count($posts) < 1) {
+    echo "No posts were found. Sorry!";
+} else {
+    echo count($posts)." results found.";    
+    for($x=0; $x<count($posts); $x++){?>
 
 	<div class="post">
 		<div class="postHead">
@@ -73,10 +67,11 @@ for($x=0; $x<count($posts); $x++){?>
 		</div>
 		<hr>
 	</div>
-<?php
+	<?php
+    }   
 }
+
 ?>
 
-				
 	</body>
 </html>
