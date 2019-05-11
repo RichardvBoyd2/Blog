@@ -1,24 +1,28 @@
 <!--  
-CST-126_Blog Ver 7.0
-editPost Ver 2.0
+CST-126_Blog Ver 8.0
+editPost Ver 2.1
 Author: Richard Boyd
-07MAY19
+10MAY19
 HTML form (in php) for editing a selected post
 -->
 <!-- 
 editPost Ver 2.0 notes:
 Added fields to the form to edit the title and content of post as well as the category.
  -->
-
+<!-- 
+editPost Ver 2.1 notes:
+Changed post handling to use Post_id
+ -->
+ 
 <html>
 	<head>
 		<title>Edit Post</title>
-		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">
+		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="/CST-126_Blog/Home/home.php">Home</a>					
+			<a href="../Home/home.php">Home</a>					
 		</div>
 
 
@@ -30,7 +34,7 @@ $sql = "SELECT posts.Post_title, posts.Post_content, posts.Posted_date, users.Us
             FROM posts 
             INNER JOIN users
             ON posts.Posted_by=users.User_id
-            WHERE Posted_date='".$_POST['time']."'";
+            WHERE Post_id='".$_POST['id']."'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 ?>
@@ -61,11 +65,11 @@ $row = mysqli_fetch_assoc($result);
 			    echo "<option value='".$row["Category_name"]."'>".$row["Category_name"]."</option>";
 			} ?>
 		</select>
-		<input type="hidden" name="time" value="<?php echo $_POST['time'] ?>">
+		<input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
 		<input type="submit" value="submit" />
 	</form>
 	<form action="deletePost.php" method="post">
-		<input type="hidden" name="time" value="<?php echo $_POST['time'] ?>">
+		<input type="hidden" name="id" value="<?php echo $_POST['id'] ?>">
 		<input type="submit" value="Delete Post" />
 	</form>
 	</body>

@@ -1,20 +1,20 @@
 <!--  
-CST-126_Blog Ver 7.0
+CST-126_Blog Ver 8.0
 users Ver 1.0
 Author: Richard Boyd
-07MAY19
+10MAY19
 Page that displays all users and allows the administrator to edit their roles
 -->
 
 <html>
 	<head>
 		<title>Edit Users</title>
-		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">
+		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="/CST-126_Blog/Home/home.php">Home</a>					
+			<a href="../Home/home.php">Home</a>					
 		</div>
 
 <?php

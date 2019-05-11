@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 7.0
+CST-126_Blog Ver 8.0
 loginHandler Ver 1.4
 Author: Richard Boyd
-07MAY19
+10MAY19
 Handles POST from login.html and queries users table against the attempted login credentials
  -->
 <!--
@@ -25,14 +25,14 @@ changed the saving of session variables so that the user role is saved to be rea
 <html>
 	<head>
 		<title>Attempting Login...</title>
-		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">		
+		<link rel="stylesheet" type="text/css" href="../style.css">		
 	</head>
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="/CST-126_Blog/Home/home.php">Home</a>
-			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
-			<a href="/CST-126_Blog/Login/login.html" >Log In</a>			
+			<a href="../Home/home.php">Home</a>
+			<a href="../Registration/register.html">Sign Up</a>
+			<a href="../Login/login.html" >Log In</a>			
 		</div>
 		
 <?php

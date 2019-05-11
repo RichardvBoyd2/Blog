@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 7.0
+CST-126_Blog Ver 8.0
 registrationHandler Ver 2.3
 Author: Richard Boyd
-07MAY19
+10MAY19
 PHP code that handles POST input from register.html and adds data to the users table in blog database
 -->
 <!-- 
@@ -25,14 +25,14 @@ added lines to redirect after creating a new user
 <html>
 	<head>
 		<title>Attempting Registration...</title>
-		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">		
+		<link rel="stylesheet" type="text/css" href="../style.css">		
 	</head>
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="/CST-126_Blog/Home/home.php">Home</a>
-			<a href="/CST-126_Blog/Registration/register.html">Sign Up</a>
-			<a href="/CST-126_Blog/Login/login.html" >Log In</a>
+			<a href="../Home/home.php">Home</a>
+			<a href="../Registration/register.html">Sign Up</a>
+			<a href="../Login/login.html" >Log In</a>
 					
 		</div>
 

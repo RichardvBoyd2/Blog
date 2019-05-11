@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 7.0
-functions Ver 4.0
+CST-126_Blog Ver 8.0
+functions Ver 4.2
 Author: Richard Boyd
-07MAY19
+10MAY19
 PHP file that contains various functions used throughout the program
 -->
 <!-- 
@@ -17,6 +17,14 @@ added function getAllUsers and getRoleNames
 functions Ver 4.0 notes:
 added searchPosts function
 -->
+<!-- 
+functions Ver 4.1 notes:
+updated getAllPosts function to get Post_id as well
+-->
+<!-- 
+functions Ver 4.2 notes:
+added getComments function
+ -->
 
 <?php
 function dbConnect() {
@@ -43,7 +51,7 @@ function getUserId() {
 function getAllPosts() {
     $conn = dbConnect();
     
-    $sql = "SELECT posts.Post_title, posts.Post_content, posts.Posted_date, users.User_nickname 
+    $sql = "SELECT posts.Post_id, posts.Post_title, posts.Post_content, posts.Posted_date, users.User_nickname, posts.Post_rating 
             FROM posts
             INNER JOIN users
             ON posts.Posted_by=users.User_id
@@ -54,11 +62,32 @@ function getAllPosts() {
     $index = 0;
     
     while ($row = mysqli_fetch_assoc($result)){
-        $posts[$index] = array($row["Post_title"],$row["Post_content"],$row["Posted_date"],$row["User_nickname"]);
+        $posts[$index] = array($row["Post_id"],$row["Post_title"],$row["Post_content"],$row["Posted_date"],$row["User_nickname"],$row["Post_rating"]);
         ++$index;
     }
     mysqli_close($conn);
     return $posts;
+}
+
+function getComments($postID) {
+    $conn = dbConnect();
+    $sql = "SELECT comments.Comment_text, comments.Posted_date, users.User_nickname
+            FROM comments
+            INNER JOIN users
+            ON comments.Posted_by=users.User_id
+            WHERE Post_id='".$postID."'
+            ORDER BY Posted_date DESC";
+    $result = mysqli_query($conn, $sql);
+    
+    $comments = array();
+    $index = 0;
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        $comments[$index] = array($row["Comment_text"],$row["Posted_date"],$row["User_nickname"]);
+        ++$index;
+    }
+    mysqli_close($conn);
+    return $comments;
 }
 
 function searchPosts($search) {

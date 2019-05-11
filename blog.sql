@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 08, 2019 at 03:24 AM
+-- Generation Time: May 10, 2019 at 11:43 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.10
 
@@ -55,12 +55,19 @@ CREATE TABLE `comments` (
   `Comment_id` int(11) NOT NULL,
   `Post_id` int(11) NOT NULL,
   `Comment_text` varchar(1000) NOT NULL,
-  `Posted_date` date NOT NULL,
+  `Posted_date` datetime NOT NULL,
   `Posted_by` int(11) NOT NULL,
-  `Updated_date` date NOT NULL,
-  `Updated_by` int(11) NOT NULL,
+  `Updated_date` date DEFAULT NULL,
+  `Updated_by` int(11) DEFAULT NULL,
   `Deleted_flag` enum('y','n') DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`Comment_id`, `Post_id`, `Comment_text`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Deleted_flag`) VALUES
+(1, 30, 'Wow that\'s awesome that the new data handling is working for editing posts! And if you\'re seeing this then comments are working too!', '2019-05-08 16:57:49', 8, NULL, NULL, 'n');
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,7 @@ CREATE TABLE `posts` (
   `Posted_by` int(11) DEFAULT NULL,
   `Updated_date` date DEFAULT NULL,
   `Updated_by` int(11) DEFAULT NULL,
+  `Post_rating` float(10,3) NOT NULL DEFAULT '0.000',
   `Deleted_Flag` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -84,9 +92,31 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`Post_id`, `Post_title`, `Category_id`, `Post_content`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Deleted_Flag`) VALUES
-(29, 'Editing titles works', 3, 'And editing the content works too!', '2019-04-26 23:18:13', 7, '2019-05-01', 8, 'n'),
-(30, 'Searching posts!', NULL, 'Searching for blog posts should be working now, I\'m adding this post so I can search for it after it\'s posted. If this works I\'ll be done with Milestone 7 already! This class is going great!', '2019-05-07 19:57:58', 9, NULL, NULL, 'n');
+INSERT INTO `posts` (`Post_id`, `Post_title`, `Category_id`, `Post_content`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Post_rating`, `Deleted_Flag`) VALUES
+(29, 'Editing titles works', 3, 'And editing the content works too!', '2019-04-26 23:18:13', 7, '2019-05-01', 8, 5.000, 'n'),
+(30, 'Searching posts! *edited', 3, 'Searching for blog posts should be working now, I\'m adding this post so I can search for it after it\'s posted. If this works I\'ll be done with Milestone 7 already! This class is going great!\r\nThis is testing the editing form with the new data handling. I\'m hoping this will work.', '2019-05-07 19:57:58', 9, '2019-05-08', 8, 2.500, 'n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `ID` int(11) NOT NULL,
+  `Rating_value` float(10,3) NOT NULL,
+  `Post_id` int(11) NOT NULL,
+  `Rated_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`ID`, `Rating_value`, `Post_id`, `Rated_by`) VALUES
+(1, 4.000, 30, 8),
+(2, 5.000, 30, 7),
+(3, 5.000, 29, 7);
 
 -- --------------------------------------------------------
 
@@ -186,6 +216,14 @@ ALTER TABLE `posts`
   ADD KEY `Updated_by` (`Updated_by`);
 
 --
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Post_id` (`Post_id`),
+  ADD KEY `Rated_by` (`Rated_by`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -218,13 +256,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `Comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `Post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -263,6 +307,13 @@ ALTER TABLE `posts`
   ADD CONSTRAINT `Category_id` FOREIGN KEY (`Category_id`) REFERENCES `categories` (`Category_id`),
   ADD CONSTRAINT `Posted_by` FOREIGN KEY (`Posted_by`) REFERENCES `users` (`User_id`),
   ADD CONSTRAINT `Updated_by` FOREIGN KEY (`Updated_by`) REFERENCES `users` (`User_id`);
+
+--
+-- Constraints for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`Post_id`) REFERENCES `posts` (`Post_id`),
+  ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`Rated_by`) REFERENCES `users` (`User_id`);
 
 --
 -- Constraints for table `roles`

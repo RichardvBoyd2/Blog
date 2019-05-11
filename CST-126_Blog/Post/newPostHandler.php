@@ -1,8 +1,8 @@
 <!-- 
-CST-126_Blog Ver 7.0
+CST-126_Blog Ver 8.0
 newPostHandler Ver 1.1
 Author: Richard Boyd
-07MAY19
+10MAY19
 PHP file that handles creating a new blog post
 -->
 <!-- 
@@ -13,12 +13,12 @@ added date and user ID values to SQL query
 <html>
 	<head>
 		<title>Create New Post</title>
-		<link rel="stylesheet" type="text/css" href="/CST-126_Blog/style.css">
+		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 	<body>
 		<!-- change login to display account once other pages are added -->
 		<div class="navbar">
-			<a href="/CST-126_Blog/Home/home.php">Home</a>					
+			<a href="../Home/home.php">Home</a>					
 		</div>
 <?php
 session_start();
@@ -37,7 +37,6 @@ if (mysqli_query($conn, $sql) === TRUE) {
     include('../Login/loginRedirect.php');
 } else {
     echo "There was a problem creating your post ";
-    echo $fixed." ".$title;
     echo "Error: ".$sql."<br>".$conn->error;
 }
 

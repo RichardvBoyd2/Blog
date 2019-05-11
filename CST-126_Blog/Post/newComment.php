@@ -1,14 +1,14 @@
 <!-- 
 CST-126_Blog Ver 8.0
-newCategoryHandler Ver 1.0
+newComment Ver 1.0
 Author: Richard Boyd
 10MAY19
-php code for creating a new category with POST info from newCategory.html
+php code to handling creating a new comment
 -->
 
 <html>
 	<head>
-		<title>Create New Post</title>
+		<title>Create New Comment</title>
 		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 	<body>
@@ -16,25 +16,27 @@ php code for creating a new category with POST info from newCategory.html
 		<div class="navbar">
 			<a href="../Home/home.php">Home</a>					
 		</div>
+
 <?php
 session_start();
-
-include("../functions.php");
+include '../functions.php';
 $conn = dbConnect();
-$name = $_POST['Category_name'];
-$ID = $_SESSION['USER_ID'];
-$sql = "INSERT INTO categories (Category_name, Created_date, Created_by)
-        VALUES ('$name', CURRENT_DATE, '$ID')";
+
+$ID = $_SESSION["USER_ID"];
+$postID = $_POST["Post_id"];
+$content = mysqli_real_escape_string($conn, $_POST["Comment_text"]);
+
+$sql = "INSERT INTO comments (Post_id, Comment_text, Posted_date, Posted_by)
+        VALUES ('$postID', '$content', CURRENT_TIMESTAMP, '$ID')";
 
 if (mysqli_query($conn, $sql) === TRUE) {
-    echo $_POST['Category_name']." was created successfully!";
-    include('../Login/loginRedirect.php');
+    echo "Your comment was posted successfully";
+    include '../Login/loginRedirect.php';
 } else {
     echo "There was a problem creating your post ";
     echo "Error: ".$sql."<br>".$conn->error;
 }
 
-mysqli_close($conn);
 ?>
 
 	</body>
