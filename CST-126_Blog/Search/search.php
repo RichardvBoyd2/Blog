@@ -37,8 +37,8 @@ search form
 		
 		<form action="searchHandler.php" method="post">
 			<label>Title, Content, or Author:</label>
-			<input type="text" name="search" />			
-			<input type="submit" value="Search" />
+			<input type="text" name="search" required />			
+			<input type="submit" value="Search" required />
 		</form>
 	</body>
 </html>

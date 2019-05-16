@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 10, 2019 at 11:43 PM
+-- Generation Time: May 16, 2019 at 11:10 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.10
 
@@ -94,7 +94,7 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`Post_id`, `Post_title`, `Category_id`, `Post_content`, `Posted_date`, `Posted_by`, `Updated_date`, `Updated_by`, `Post_rating`, `Deleted_Flag`) VALUES
 (29, 'Editing titles works', 3, 'And editing the content works too!', '2019-04-26 23:18:13', 7, '2019-05-01', 8, 5.000, 'n'),
-(30, 'Searching posts! *edited', 3, 'Searching for blog posts should be working now, I\'m adding this post so I can search for it after it\'s posted. If this works I\'ll be done with Milestone 7 already! This class is going great!\r\nThis is testing the editing form with the new data handling. I\'m hoping this will work.', '2019-05-07 19:57:58', 9, '2019-05-08', 8, 2.500, 'n');
+(30, 'Searching posts! *edited', 3, 'Searching for blog posts should be working now, I\'m adding this post so I can search for it after it\'s posted. If this works I\'ll be done with Milestone 7 already! This class is going great!\r\nThis is testing the editing form with the new data handling. I\'m hoping this will work.', '2019-05-07 19:57:58', 9, '2019-05-08', 8, 4.500, 'n');
 
 -- --------------------------------------------------------
 
@@ -182,7 +182,8 @@ INSERT INTO `users` (`User_id`, `User_name`, `Password`, `User_role`, `User_nick
 (8, 'admin', 'Password1', 1, 'Admin', 'Ad', '', 'min', 'admin@blog.com', '', '', '', '', '', '', '', 'n', 'n'),
 (9, 'testAuthor', 'Password1', 2, 'Author', 'Au', '', 'thor', 'author@blog.com', '', '', '', '', '', '', '', 'n', 'n'),
 (10, 'testEditor', 'Password1', 3, 'editor', 'ed', '', 'itor', 'editor@blog.com', 'editor@email.com', '', '', '', '', '', '', 'n', 'n'),
-(11, 'testModerator', 'Password1', 4, 'Moderator', 'Mod', '', 'erator', 'moderator@blog.com', '', '', '', '', '', '', '', 'n', 'n');
+(11, 'testModerator', 'Password1', 4, 'Moderator', 'Mod', '', 'erator', 'moderator@blog.com', '', '', '', '', '', '', '', 'n', 'n'),
+(12, 'testPlan', 'Testplan1', 5, 'TestPlan', 'Test', '', 'Plan', 'testplan@blog.com', '', '', '', '', '', '', '', 'n', 'n');
 
 --
 -- Indexes for dumped tables
@@ -280,7 +281,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

@@ -114,7 +114,7 @@ for($x=0; $x<count($posts); $x++){?>
 			<form method="post" action="../Post/newComment.php">
 				<input type="hidden" name="Post_id" value="<?php echo $posts[$x][0]?>" />
 				<label>New Comment</label>
-				<textarea name="Comment_text" rows="5" cols="75" maxlength="10000"></textarea>
+				<textarea name="Comment_text" rows="5" cols="75" maxlength="10000" required></textarea>
 				<input type="submit" value="Post Comment" class="submit" />
 			</form>	
 			<?php 
